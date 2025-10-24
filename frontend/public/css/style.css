@@ -1,33 +1,163 @@
-
-/* estilos base de prueba */
+/* -------------------------------- */
+/* ESTILO GENERAL DEL SITIO */
+/* -------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
 
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 2rem;
   background-color: #fafafa;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+/* -------------------------------- */
+/* ENCABEZADO */
+/* -------------------------------- */
 header {
-  background-color: #222;
+  background-color: #111;
   color: #fff;
-  padding: 1rem;
-  border-radius: 8px;
+  text-align: center;
+  padding: 1.5rem 0;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
+header h1 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+header p {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+/* -------------------------------- */
+/* SECCIÓN PRINCIPAL */
+/* -------------------------------- */
 main {
-  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 2rem;
 }
 
-button {
-  background-color: #ff6600;
-  color: white;
-  padding: 0.6rem 1.2rem;
+/* -------------------------------- */
+/* CATÁLOGO DE PRODUCTOS */
+/* -------------------------------- */
+#catalogo {
+  flex: 3;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.producto {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.producto:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.producto h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.producto p {
+  color: #555;
+  margin-bottom: 0.8rem;
+}
+
+.producto button {
+  background-color: #111;
+  color: #fff;
   border: none;
-  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-button:hover {
-  background-color: #974b00;
+.producto button:hover {
+  background-color: #e63946;
+}
+
+/* -------------------------------- */
+/* CARRITO DE COMPRAS */
+/* -------------------------------- */
+#carrito {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+#carrito h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  border-bottom: 2px solid #e63946;
+  padding-bottom: 0.5rem;
+}
+
+#lista-carrito {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+#lista-carrito li {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+#total {
+  font-weight: bold;
+  text-align: right;
+  margin-top: 1rem;
+}
+
+#btn-ticket {
+  width: 100%;
+  padding: 0.7rem;
+  background-color: #e63946;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#btn-ticket:hover {
+  background-color: #c71f2d;
+}
+
+/* -------------------------------- */
+/* PIE DE PÁGINA */
+/* -------------------------------- */
+footer {
+  margin-top: auto;
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
 }

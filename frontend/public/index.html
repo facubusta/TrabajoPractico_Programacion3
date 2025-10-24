@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pantalla base</title>
-    <link rel="stylesheet" href="./css/style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Titulo Prueba</h1>
-    </header>
-    <main>
-      <p>El front cargó OK.</p>
-      <button id="btn-demo">Probar JS</button>
-    </main>
-    <script src="./js/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoMusic - Tu autoservicio de instrumentos</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>🎸 AutoMusic</h1>
+    <p>Tu autoservicio de instrumentos y accesorios</p>
+  </header>
+
+  <!-- SECCIÓN PRINCIPAL -->
+  <main>
+    <!-- Catálogo de productos -->
+    <section id="catalogo">
+      <!-- Las tarjetas de productos se insertan dinámicamente desde main.js -->
+    </section>
+
+    <!-- Carrito de compras -->
+    <aside id="carrito">
+      <h2>🛒 Carrito</h2>
+      <ul id="lista-carrito">
+        <!-- Productos agregados aparecerán aquí -->
+      </ul>
+      <p id="total">Total: $0</p>
+      <button id="btn-ticket">Generar Ticket</button>
+    </aside>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <p>© 2025 AutoMusic - Proyecto UTN Avellaneda</p>
+  </footer>
+
+  <script src="./js/main.js"></script>
+</body>
 </html>
+
