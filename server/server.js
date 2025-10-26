@@ -11,14 +11,27 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+// Middlewares base
 app.use(cors({
-  origin: true,           
-  credentials: false
+  origin: true,
+  credentials: true // Para cookies si desp usamos sesiones
 }));
 
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json()); // para parsear JSON en el body
+app.use(express.urlencoded({ extended: true }));
+
+// Sesión (se guarda en las cookies)
+app.use(session({
+  secret: process.env.SESSION_SECRET || "secreto-de-prueba",
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 1000*60*60 } // dura 1 hora
+}));
+
+// API de autenticación
+app.use("/api/auth", authApi);
 
 // API de productos
 app.use("/api/products", productsApi);
