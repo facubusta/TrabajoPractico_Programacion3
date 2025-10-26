@@ -12,34 +12,48 @@ const router = Router();
 //   total: cantidad total,
 //   page: número de página actual,
 //   pages: cantidad total de páginas.
-router.get("/", (req, res) => {
-  const page  = Number(req.query.page)  || 1;
-  const limit = Number(req.query.limit) || 12;
-  const type  = req.query.type;
-  const activeParam = req.query.active;
-  const active = activeParam === "false" ? false : (activeParam === "true" ? true : undefined);
+router.get("/", async (req, res, next) => {
+  try {
+    const page  = Number(req.query.page)  || 1;
+    const limit = Number(req.query.limit) || 12;
+    const type  = req.query.type;
+    const activeParam = req.query.active;
+    const active = activeParam === "false" ? false : (activeParam === "true" ? true : undefined);
 
-  let list = PRODUCTS.slice();
-  if (type)   list = list.filter(p => p.type === type);
-  if (active !== undefined) list = list.filter(p => p.active === active);
+    const where = {};
+    if (type)   where.type = type;
+    if (active !== undefined) where.active = active;
 
-  const total = list.length;
-  const pages = Math.max(1, Math.ceil(total / limit));
-  const start = (page - 1) * limit;
-  const data  = list.slice(start, start + limit);
+    const offset = (page - 1) * limit;
 
-  res.json({ data, total, page, pages });
+    const { rows, count } = await Product.findAndCountAll({
+      where,
+      limit,
+      offset,
+      order: [["createdAt", "DESC"]],
+    });
+
+    const total = count;
+    const pages = Math.max(1, Math.ceil(total / limit));
+    res.json({ data: rows, total, page, pages });
+  } catch (e) {
+    next(e);
+  }
 });
 
 // Ruta para traer un solo producto por su id.
 // Ejemplo de uso: /api/products/3
 // Devuelve el producto completo si existe.
 // Si no encuentra el id, responde con error 404 y un mensaje en JSON.
-router.get("/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const found = PRODUCTS.find(p => p.id === id);
-  if (!found) return res.status(404).json({ error: "Product not found" });
-  res.json(found);
+router.get("/:id", async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    const found = await Product.findByPk(id);
+    if (!found) return res.status(404).json({ error: "Product not found" });
+    res.json(found);
+  } catch (e) {
+    next(e);
+  }
 });
 
 export default router;

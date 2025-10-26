@@ -2,8 +2,9 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import productsApi from "./routes/api.products.js";
-
 import cors from "cors";
+import { sequelize } from "./models/index.js";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,6 +31,13 @@ app.use((req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/public/index.html"));
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor levantado en http://localhost:${PORT}`);
-});
+// Ahora sincronizo con la base de datos y luego levanto el servvidor.
+(async () => {
+  try {
+    await sequelize.sync(); // en dev: crea/actualiza tablas. En prod: migraciones.
+    app.listen(PORT, () => console.log(`Servidor levantado en http://localhost:${PORT}`));
+  } catch (err) {
+    console.error("No se pudo inicializar la DB:", err);
+    process.exit(1);
+  }
+})();
