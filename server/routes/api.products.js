@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { PRODUCTS } from "../mocks/products.js";
+import { Product } from "../models/Product.js";
 
 const router = Router();
 

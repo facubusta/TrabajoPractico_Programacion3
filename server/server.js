@@ -3,7 +3,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import productsApi from "./routes/api.products.js";
 import cors from "cors";
+import session from "express-session";
 import { sequelize } from "./models/index.js";
+import authApi from "./routes/api.auth.js";
 
 
 const __filename = fileURLToPath(import.meta.url);
