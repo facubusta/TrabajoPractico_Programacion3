@@ -1,104 +1,40 @@
-// ------------------------------
-// VARIABLES GLOBALES
-// ------------------------------
-let productos = [];
-let carrito = [];
+// Función principal que carga los productos desde el backend
+async function cargarProductos() {
+  const contenedor = document.getElementById("productos");
+  contenedor.innerHTML = "<p>Cargando productos...</p>";
 
-// ------------------------------
-// FUNCIÓN: Cargar productos
-// Descripción: Simula obtener los productos (por ahora local, luego con fetch al backend).
-// ------------------------------
-function cargarProductos() {
-  productos = [
-    { id: 1, nombre: "Guitarra Fender", precio: 250000 },
-    { id: 2, nombre: "Batería Yamaha", precio: 420000 },
-    { id: 3, nombre: "Cable Jack 3m", precio: 8000 },
-    { id: 4, nombre: "Micrófono Shure", precio: 95000 }
-  ];
-  mostrarProductos();
+  try {
+    const res = await fetch("http://localhost:3000/api/products");
+    if (!res.ok) throw new Error("Error al obtener productos del servidor");
+
+    const data = await res.json();
+    const productos = data.data || data; // soporte tanto para mock como para respuesta real
+    mostrarProductos(productos);
+  } catch (err) {
+    console.error("Error:", err.message);
+    contenedor.innerHTML = `<p style="color:red;">${err.message}</p>`;
+  }
 }
 
-// ------------------------------
-// FUNCIÓN: Mostrar productos
-// Descripción: Genera dinámicamente las tarjetas de producto en el catálogo.
-// ------------------------------
-function mostrarProductos() {
-  const catalogo = document.querySelector("#catalogo");
-  catalogo.innerHTML = "";
+// Función que muestra los productos en el DOM
+function mostrarProductos(productos) {
+  const contenedor = document.getElementById("productos");
+  contenedor.innerHTML = ""; // Limpia antes de renderizar
 
-  productos.forEach(p => {
+  productos.forEach(prod => {
     const card = document.createElement("div");
     card.classList.add("producto");
+
     card.innerHTML = `
-      <h3>${p.nombre}</h3>
-      <p>Precio: $${p.precio}</p>
-      <button onclick="agregarAlCarrito(${p.id})">Agregar</button>
+      <img src="${prod.imagePath}" alt="${prod.name}" />
+      <h3>${prod.name}</h3>
+      <p>Precio: $${prod.price.toLocaleString("es-AR")}</p>
+      <button class="btn-comprar">Agregar al carrito</button>
     `;
-    catalogo.appendChild(card);
+
+    contenedor.appendChild(card);
   });
 }
 
-// ------------------------------
-// FUNCIÓN: Agregar al carrito
-// Descripción: Busca un producto por ID y lo agrega al array carrito.
-// ------------------------------
-function agregarAlCarrito(id) {
-  const producto = productos.find(p => p.id === id);
-  if (producto) {
-    carrito.push(producto);
-    mostrarCarrito();
-  }
-}
-
-// ------------------------------
-// FUNCIÓN: Mostrar carrito
-// Descripción: Renderiza los productos agregados en el <aside>.
-// ------------------------------
-function mostrarCarrito() {
-  const lista = document.querySelector("#lista-carrito");
-  const total = document.querySelector("#total");
-  lista.innerHTML = "";
-
-  carrito.forEach(p => {
-    const item = document.createElement("li");
-    item.textContent = `${p.nombre} - $${p.precio}`;
-    lista.appendChild(item);
-  });
-
-  const totalCompra = carrito.reduce((acc, p) => acc + p.precio, 0);
-  total.textContent = `Total: $${totalCompra}`;
-}
-
-// ------------------------------
-// FUNCIÓN: Generar ticket
-// Descripción: Muestra el resumen del carrito (total y fecha).
-// ------------------------------
-function generarTicket() {
-  if (carrito.length === 0) {
-    alert("El carrito está vacío.");
-    return;
-  }
-
-  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
-  const fecha = new Date().toLocaleString();
-
-  const ticket = `
-🧾 AUTO MUSIC - Ticket
-Fecha: ${fecha}
-Total: $${total}
-----------------------------
-Gracias por tu compra!
-  `;
-
-  alert(ticket);
-}
-
-// ------------------------------
-// EVENTO: Botón "Generar Ticket"
-// ------------------------------
-document.querySelector("#btn-ticket").addEventListener("click", generarTicket);
-
-// ------------------------------
-// EJECUCIÓN INICIAL
-// ------------------------------
+// Inicializa la carga al abrir la página
 cargarProductos();
