@@ -1,0 +1,19 @@
+/* admin.css — así nomás, oscuro prolijo */
+:root{
+  --bg:#0f0f0f; --panel:#171717; --text:#eaeaea; --muted:#a0a0a0; --accent:#e50914;
+}
+
+html,body{margin:0; background:var(--bg); color:var(--text); font-family:system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica Neue, Arial, Noto Sans, Liberation Sans, sans-serif;}
+
+.admin-header{padding:16px 20px; background:var(--panel); border-bottom:1px solid #222;}
+.admin-header h1{margin:0;}
+.welcome{margin:6px 0 0 0; color:var(--muted);}
+
+.admin-nav{display:flex; gap:10px; padding:10px 20px; border-bottom:1px solid #222; background:#121212;}
+.admin-nav a{color:#ddd; text-decoration:none; padding:6px 10px; border-radius:8px;}
+.admin-nav a:hover{background:#1f1f1f;}
+
+.admin-main{padding:20px; display:grid; gap:16px;}
+.tile{background:var(--panel); border:1px solid #222; border-radius:12px; padding:16px;}
+.tile h2{margin:0 0 8px;}
+.tile p{margin:0; color:var(--muted);}

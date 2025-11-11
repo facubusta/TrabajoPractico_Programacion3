@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Panel Administrador</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <h1>Panel Administrador</h1>
+      <% if (user) { %>
+        <p class="welcome">Bienvenido, <strong><%= user %></strong></p>
+      <% } %>
+    </header>
+
+    <nav class="admin-nav">
+      <a href="/admin">Inicio</a>
+      <a href="/admin/productos">Productos</a>
+      <a href="/admin/ventas">Ventas</a>
+      <a href="/logout">Salir</a>
+    </nav>
+
+    <main class="admin-main">
+      <section class="tile">
+        <h2>Dashboard</h2>
+        <p>Arrancamos desde acá el ABM con tu auth por cookies.</p>
+      </section>
+    </main>
+  </body>
+</html>

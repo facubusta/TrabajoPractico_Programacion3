@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin — Productos</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+    <style>
+      .toolbar{ display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+      .muted{ color:#a0a0a0; }
+      table{ width:100%; border-collapse:collapse; background:#171717; border:1px solid #222; }
+      th, td{ padding:10px; border-bottom:1px solid #222; text-align:left; color:#ddd; }
+      th{ color:#eaeaea; }
+      .actions a, .actions form button{
+        display:inline-block; margin-right:8px; background:#e50914; color:#fff;
+        border:none; padding:6px 10px; border-radius:8px; text-decoration:none; cursor:pointer;
+      }
+      .actions a.secondary{ background:#303030; }
+      .empty{ padding:16px; background:#151515; border:1px solid #222; border-radius:12px; color:#ddd; }
+    </style>
+  </head>
+  <body>
+    <header class="admin-header">
+      <h1>Productos</h1>
+    </header>
+
+    <nav class="admin-nav">
+      <a href="/admin">Inicio</a>
+      <a href="/admin/productos">Productos</a>
+      <a href="/admin/ventas">Ventas</a>
+      <a href="/logout">Salir</a>
+    </nav>
+
+    <main class="admin-main">
+      <section class="tile">
+        <div class="toolbar">
+          <p class="muted"><%= productos.length %> producto(s)</p>
+          <a class="actions a" href="/admin/productos/nuevo">Nuevo producto</a>
+        </div>
+
+        <% if (error) { %>
+          <div class="empty"><%= error %></div>
+        <% } else if (!productos.length) { %>
+          <div class="empty">
+            <p>No hay productos para mostrar.</p>
+            <p><a class="actions a" href="/admin/productos/nuevo">Crear el primero</a></p>
+          </div>
+        <% } else { %>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Precio</th>
+                <th>Activo</th>
+                <th class="actions">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% productos.forEach(p => { %>
+                <tr>
+                  <td><%= p.id %></td>
+                  <td><%= p.name ?? p.nombre %></td>
+                  <td><%= p.type ?? p.tipo ?? "-" %></td>
+                  <td><%= (p.price ?? p.precio) %></td>
+                  <td><%= (p.active ?? p.activo) ? "Sí" : "No" %></td>
+                  <td class="actions">
+                    <a class="secondary" href="/admin/productos/<%= p.id %>/editar">Editar</a>
+
+                    <% if ((p.active ?? p.activo) === true) { %>
+                        <form action="/admin/productos/<%= p.id %>/desactivar" method="POST" style="display:inline;">
+                        <button type="submit">Desactivar</button>
+                        </form>
+                    <% } else { %>
+                        <form action="/admin/productos/<%= p.id %>/activar" method="POST" style="display:inline;">
+                        <button type="submit">Activar</button>
+                        </form>
+                    <% } %>
+
+                    <form action="/admin/productos/<%= p.id %>/eliminar" method="POST" style="display:inline;" onsubmit="return confirm('¿Eliminar definitivamente este producto?');">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } %>
+      </section>
+    </main>
+  </body>
+</html>

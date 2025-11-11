@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Login Admin</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+    <style>
+      .login-wrap{max-width:380px;margin:60px auto;background:#171717;padding:20px;border-radius:12px;border:1px solid #222;}
+      .login-wrap h1{margin:0 0 12px;}
+      .login-wrap label{display:block;margin:8px 0 4px;}
+      .login-wrap input{width:100%;padding:8px 10px;border-radius:8px;border:1px solid #333;background:#111;color:#eee;}
+      .login-wrap button{margin-top:12px;background:#e50914;color:#fff;border:none;padding:10px 12px;border-radius:10px;font-weight:600;cursor:pointer;}
+      .error{color:#ff7b7b;margin-top:8px;}
+      .hint{color:#aaa;margin-top:8px;font-size:.9rem}
+    </style>
+  </head>
+  <body>
+    <div class="login-wrap">
+      <h1>Panel Admin</h1>
+      <form action="/login" method="POST" novalidate>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="admin@automusic.com" required />
+
+        <label for="password">Contraseña</label>
+        <input id="password" name="password" type="password" value="admin123" required />
+
+        <button type="submit">Ingresar</button>
+
+        <% if (error) { %>
+          <div class="error"><%= error %></div>
+        <% } %>
+
+        <div class="hint">Usuario demo: <code>admin@automusic.com</code> / <code>admin123</code></div>
+      </form>
+    </div>
+  </body>
+</html>
