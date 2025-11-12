@@ -1,6 +1,4 @@
-/* -------------------------------- */
 /* ESTILO GENERAL DEL SITIO */
-/* -------------------------------- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,9 +14,8 @@ body {
   min-height: 100vh;
 }
 
-/* -------------------------------- */
+
 /* ENCABEZADO */
-/* -------------------------------- */
 header {
   background-color: #111;
   color: #fff;
@@ -37,19 +34,14 @@ header p {
   color: #ccc;
 }
 
-/* -------------------------------- */
 /* SECCIÓN PRINCIPAL */
-/* -------------------------------- */
 main {
   display: flex;
   justify-content: space-between;
   padding: 2rem;
   gap: 2rem;
 }
-
-/* -------------------------------- */
 /* CATÁLOGO DE PRODUCTOS */
-/* -------------------------------- */
 #catalogo {
   flex: 3;
   display: grid;
@@ -96,9 +88,7 @@ main {
   background-color: #e63946;
 }
 
-/* -------------------------------- */
 /* CARRITO DE COMPRAS */
-/* -------------------------------- */
 #carrito {
   flex: 1;
   background-color: #fff;
@@ -150,9 +140,7 @@ main {
   background-color: #c71f2d;
 }
 
-/* -------------------------------- */
 /* PIE DE PÁGINA */
-/* -------------------------------- */
 footer {
   margin-top: auto;
   background-color: #111;
@@ -160,4 +148,48 @@ footer {
   text-align: center;
   padding: 1rem;
   font-size: 0.9rem;
+}
+
+/* --- Estilo del carrito mejorado --- */
+#lista-carrito li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  border: 1px solid #ddd;
+  color: #111;
+}
+
+#lista-carrito li button {
+  background-color: #111;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  margin-left: 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.2s ease;
+}
+
+#lista-carrito li button:hover {
+  background-color: #e63946;
+}
+
+#lista-carrito li span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#carrito button:last-child {
+  margin-top: 10px;
+  background-color: #444;
+}
+
+#carrito button:last-child:hover {
+  background-color: #c71f2d;
 }
