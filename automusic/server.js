@@ -25,6 +25,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json()); // para parsear JSON en el body
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/css", express.static(path.join(__dirname, "views/admin/css")));
   
 // Configuración de EJS
 app.set("view engine", "ejs");

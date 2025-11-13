@@ -1,0 +1,173 @@
+/* 🌙Panel Admin */
+:root {
+  --bg: #0d0d0f;
+  --panel: #16161a;
+  --accent: #e63946;
+  --accent-hover: #ff4554;
+  --text: #f5f5f5;
+  --muted: #a0a0a0;
+  --border: #222;
+  --success: #38b000;
+  --danger: #d00000;
+  --radius: 10px;
+  --shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+html, body {
+  margin: 0;
+  background: linear-gradient(180deg, #0e0e11, #1a1a1d);
+  color: var(--text);
+  font-family: 'Poppins', 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.admin-header {
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 24px;
+  box-shadow: var(--shadow);
+}
+.admin-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+.welcome {
+  color: var(--muted);
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+}
+
+/* NAVBAR */
+.admin-nav {
+  display: flex;
+  gap: 12px;
+  padding: 12px 24px;
+  background: #111;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.admin-nav a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  background: transparent;
+}
+.admin-nav a:hover {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* MAIN CONTENT */
+.admin-main {
+  padding: 24px;
+  display: grid;
+  gap: 20px;
+}
+
+/* TARJETAS */
+.tile {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.tile h2 {
+  margin-top: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* TABLAS */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+th {
+  background: #1f1f22;
+  color: var(--text);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* BOTONES */
+button, .btn, .actions a {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+button:hover, .btn:hover, .actions a:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 0 10px var(--accent);
+}
+.btn.secondary {
+  background: #333;
+}
+.btn.secondary:hover {
+  background: #444;
+}
+
+/* FORMULARIOS */
+input[type="text"], input[type="number"], input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid #333;
+  background: #111;
+  color: var(--text);
+  font-size: 1rem;
+}
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+/* MENSAJES DE ERROR */
+.error {
+  color: var(--danger);
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+/* FOOTER ( por si lo agregramos más adelante) */
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  padding: 20px;
+  border-top: 1px solid var(--border);
+  background: #111;
+}
+
+
+body {
+  outline: 6px solid limegreen;
+}
