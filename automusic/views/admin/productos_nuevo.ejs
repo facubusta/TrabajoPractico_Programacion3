@@ -41,8 +41,12 @@
             </div>
 
             <div>
-              <label for="type">Tipo</label>
-              <input id="type" name="type" type="text" value="<%= values.type || '' %>" />
+              <label for="type">Tipo *</label>
+              <select id="type" name="type" required>
+                <option value="">Seleccionar tipo</option>
+                <option value="A" <%= values.type === 'A' ? 'selected' : '' %>>A</option>
+                <option value="B" <%= values.type === 'B' ? 'selected' : '' %>>B</option>
+              </select>
             </div>
 
             <div>

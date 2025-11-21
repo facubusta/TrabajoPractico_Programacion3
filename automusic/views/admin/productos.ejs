@@ -34,7 +34,7 @@
       <section class="tile">
         <div class="toolbar">
           <p class="muted"><%= productos.length %> producto(s)</p>
-          <a class="actions a" href="/admin/productos/nuevo">Nuevo producto</a>
+          <a href="/admin/productos/nuevo" class="btn-add">Agregar producto</a>
         </div>
 
         <% if (error) { %>
@@ -65,7 +65,7 @@
                   <td><%= (p.price ?? p.precio) %></td>
                   <td><%= (p.active ?? p.activo) ? "Sí" : "No" %></td>
                   <td class="actions">
-                    <a class="secondary" href="/admin/productos/<%= p.id %>/editar">Editar</a>
+                    <a class="btn-editar" href="/admin/productos/<%= p.id %>/editar">Editar</a>
 
                     <% if ((p.active ?? p.activo) === true) { %>
                         <form action="/admin/productos/<%= p.id %>/desactivar" method="POST" style="display:inline;">

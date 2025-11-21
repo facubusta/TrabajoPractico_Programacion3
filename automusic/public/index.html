@@ -7,37 +7,62 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
-    <h1>🎸 AutoMusic</h1>
-    <p>Tu autoservicio de instrumentos y accesorios</p>
-  </header>
 
-  <!-- SECCIÓN PRINCIPAL -->
-  <main>
-    <div id="productos" class="contenedor-productos"></div>
-    <!-- Catálogo de productos -->
-    <section id="catalogo">
-      <!-- Las tarjetas de productos se insertan dinámicamente desde main.js -->
-    </section>
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <h1 class="logo">🎸 AutoMusic</h1>
+  </div>
 
-    <!-- Carrito de compras -->
-    <aside id="carrito">
-      <h2>🛒 Carrito</h2>
-      <ul id="lista-carrito">
-        <!-- Productos agregados aparecerán aquí -->
-      </ul>
-      <p id="total">Total: $0</p>
-      <button id="btn-ticket">Generar Ticket</button>
-    </aside>
-  </main>
+  <div class="header-center">
 
-  <!-- PIE DE PÁGINA -->
-  <footer>
-    <p>© 2025 AutoMusic - Proyecto UTN Avellaneda</p>
-  </footer>
+    <div class="nav-dropdown">
+      <button class="nav-btn">Catálogo ▾</button>
+      <div class="nav-dropdown-content">
+        <a href="#" onclick="filtrar('todo')">Ver todo</a>
+        <a href="#" onclick="filtrar('A')">Instrumentos</a>
+        <a href="#" onclick="filtrar('B')">Accesorios</a>
+      </div>
+    </div>
 
-  <script src="./js/main.js"></script>
+    <input type="text" id="search" placeholder="Buscar productos..." oninput="buscarProductos()">
+
+  </div>
+
+  <div class="header-right">
+    <button id="btn-carrito" class="icon-btn">🛒<span id="carrito-count">0</span></button>
+    <a href="/admin" id="btn-login" class="login-btn">Login</a>
+  </div>
+</header>
+
+<!-- CARRITO SIDEBAR (ÚNICO Y CORRECTO) -->
+<aside id="carrito-sidebar" class="carrito-sidebar">
+  <div class="carrito-header">
+    <h2>🛒 Carrito</h2>
+    <button id="cerrar-carrito" class="cerrar-btn">✖</button>
+  </div>
+
+  <ul id="lista-carrito"></ul>
+
+  <p id="total">Total: $0</p>
+  <button id="btn-ticket" class="btn-ticket">Generar Ticket</button>
+  <button id="btn-vaciar" class="btn-vaciar">Vaciar carrito</button>
+</aside>
+
+<!-- OVERLAY (ÚNICO) -->
+<div id="overlay" class="overlay"></div>
+
+<!-- PRODUCTOS -->
+<main>
+  <div id="productos" class="contenedor-productos"></div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 AutoMusic - Proyecto UTN Avellaneda</p>
+</footer>
+
+<script src="./js/main.js"></script>
+<div id="notificacion" class="notif-hidden"></div>
 </body>
 </html>
-
