@@ -28,6 +28,7 @@ function mostrarProductos(productos) {
   contenedor.innerHTML = "";
 
   productos.forEach(prod => {
+   console.log("IMG PATH:", prod.imagePath);
     const card = document.createElement("div");
     card.classList.add("producto");
 
