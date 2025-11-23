@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoMusic - Tu autoservicio de instrumentos</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <script>
+    const nombre = localStorage.getItem("clienteNombre");
+    if (!nombre) {
+        window.location.href = "index.html"; // volver a bienvenida si no tiene nombre cargado.
+    }
+    </script>
+
+    <!-- HEADER -->
+    <header class="header">
+    <div class="header-left">
+        <h1 class="logo">🎸 AutoMusic</h1>
+    </div>
+
+    <div class="header-center">
+
+        <div class="nav-dropdown">
+        <button class="nav-btn">Catálogo ▾</button>
+        <div class="nav-dropdown-content">
+            <a href="#" onclick="filtrar('todo')">Ver todo</a>
+            <a href="#" onclick="filtrar('A')">Instrumentos</a>
+            <a href="#" onclick="filtrar('B')">Accesorios</a>
+        </div>
+        </div>
+
+        <input type="text" id="search" placeholder="Buscar productos..." oninput="buscarProductos()">
+
+    </div>
+
+    <div class="header-right">
+        <button id="btn-carrito" class="icon-btn">🛒<span id="carrito-count">0</span></button>
+        <a href="/admin" id="btn-login" class="login-btn">Login</a>
+    </div>
+    </header>
+
+    <div id="saludo-cliente" class="saludo-cliente"></div>
+
+    <!-- CARRITO SIDEBAR (ÚNICO Y CORRECTO) -->
+    <aside id="carrito-sidebar" class="carrito-sidebar">
+    <div class="carrito-header">
+        <h2>🛒 Carrito</h2>
+        <button id="cerrar-carrito" class="cerrar-btn">✖</button>
+    </div>
+
+    <ul id="lista-carrito"></ul>
+
+    <p id="total">Total: $0</p>
+    <button id="btn-ticket" class="ticket-btn">Generar Ticket</button>
+    <button id="btn-vaciar" class="btn-vaciar">Vaciar carrito</button>
+    </aside>
+
+    <!-- OVERLAY (ÚNICO) -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- PRODUCTOS -->
+    <main>
+    <div id="productos" class="contenedor-productos"></div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+    <p>© 2025 AutoMusic - Proyecto UTN Avellaneda</p>
+    </footer>
+
+    <script src="./js/main.js"></script>
+    <div id="notificacion" class="notif-hidden"></div>
+
+    <script>
+    const nombreCliente = localStorage.getItem("clienteNombre");
+    if (nombreCliente) {
+        const saludo = document.getElementById("saludo-cliente");
+        saludo.textContent = `Hola, ${nombreCliente} 👋`;
+    }
+    </script>
+</body>
+</html>

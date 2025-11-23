@@ -1,0 +1,132 @@
+/* ======== PANTALLA TICKET ======== */
+
+.ticket-body {
+  background: linear-gradient(135deg, #111, #1c1c1c, #161616);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.ticket-card {
+  background: rgba(0,0,0,0.7);
+  border-radius: 18px;
+  border: 1px solid #333;
+  padding: 30px 35px;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.ticket-card h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.ticket-empresa {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.ticket-datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.ticket-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.ticket-tabla th,
+.ticket-tabla td {
+  border-bottom: 1px solid #333;
+  padding: 8px 6px;
+  text-align: left;
+}
+
+.ticket-tabla th {
+  background: #1f1f1f;
+}
+
+.ticket-total-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.ticket-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn-primario,
+.btn-secundario {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.btn-primario {
+  background: #e63946;
+  color: white;
+}
+
+.btn-primario:hover {
+  background: #ff4a58;
+  border-color: #ff4a58;
+}
+
+.btn-secundario {
+  background: #2a2a2a;
+  color: white;
+}
+
+.btn-secundario:hover {
+  background: #3a3a3a;
+  border-color: #666;
+}
+
+.ticket-mensaje {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #9be7ff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .ticket-card {
+    padding: 20px;
+  }
+
+  .ticket-datos {
+    flex-direction: column;
+  }
+
+  .ticket-botones {
+    justify-content: center;
+  }
+}

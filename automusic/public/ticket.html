@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoMusic - Ticket de compra</title>
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/ticket.css" />
+</head>
+<body class="ticket-body">
+
+  <!-- HEADER (mismo estilo general que bienvenida) -->
+  <header class="header">
+    <div class="header-left">
+      <h1 class="logo">🎸 AutoMusic</h1>
+      <p class="subtitulo-alumnos">Alumnos: Federico Robledo – Facundo Busta</p>
+    </div>
+
+    <nav class="navbar">
+      <a href="/admin" class="login-btn">Login</a>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="ticket-main">
+    <section class="ticket-card">
+      <h2>Ticket de compra</h2>
+
+      <p class="ticket-empresa">AutoMusic - Tu autoservicio de instrumentos</p>
+
+      <div class="ticket-datos">
+        <p><strong>Cliente:</strong> <span id="ticket-cliente"></span></p>
+        <p><strong>Fecha:</strong> <span id="ticket-fecha"></span></p>
+      </div>
+
+      <table class="ticket-tabla">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio unidad</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody id="ticket-items"></tbody>
+      </table>
+
+      <div class="ticket-total-row">
+        <span>Total</span>
+        <span id="ticket-total"></span>
+      </div>
+
+      <div class="ticket-botones">
+        <button id="btn-descargar-pdf" class="btn-primario">Descargar PDF</button>
+        <button id="btn-volver-inicio" class="btn-secundario">Volver a empezar</button>
+      </div>
+
+      <p id="ticket-mensaje" class="ticket-mensaje"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 AutoMusic - Proyecto UTN Avellaneda</p>
+  </footer>
+
+  <script src="./js/ticket.js"></script>
+</body>
+</html>

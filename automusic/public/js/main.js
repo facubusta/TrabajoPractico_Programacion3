@@ -156,20 +156,9 @@ function generarTicket() {
     alert("El carrito está vacío.");
     return;
   }
-
-  let mensaje = "Ticket AutoMusic\n\n";
-  let total = 0;
-
-  carrito.forEach(p => {
-    mensaje += `${p.name} x${p.cantidad} — $${(p.price * p.cantidad)
-      .toLocaleString("es-AR")}\n`;
-    total += p.price * p.cantidad;
-  });
-
-  mensaje += `\nTotal: $${total.toLocaleString("es-AR")}`;
-
-  alert(mensaje);
+  window.location.href = "ticket.html";
 }
+
 
 // ---------- Inicialización ----------
 document.addEventListener("DOMContentLoaded", () => {
@@ -177,6 +166,16 @@ document.addEventListener("DOMContentLoaded", () => {
   actualizarCarritoCount();
   renderCarrito();
   cargarProductos();
+
+  const btnTicket = document.getElementById("btn-ticket");
+  if (btnTicket) {
+    btnTicket.addEventListener("click", generarTicket);
+  }
+
+  const btnVaciar = document.getElementById("btn-vaciar");
+  if (btnVaciar) {
+    btnVaciar.addEventListener("click", vaciarCarrito);
+  }
 
   // Abrir carrito
   document.getElementById("btn-carrito")

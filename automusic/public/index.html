@@ -1,68 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AutoMusic - Tu autoservicio de instrumentos</title>
-  <link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoMusic - Bienvenida</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/bienvenida.css" />
 </head>
-<body>
+<body class="bienvenida-body">
 
-<!-- HEADER -->
-<header class="header">
-  <div class="header-left">
-    <h1 class="logo">🎸 AutoMusic</h1>
-  </div>
-
-  <div class="header-center">
-
-    <div class="nav-dropdown">
-      <button class="nav-btn">Catálogo ▾</button>
-      <div class="nav-dropdown-content">
-        <a href="#" onclick="filtrar('todo')">Ver todo</a>
-        <a href="#" onclick="filtrar('A')">Instrumentos</a>
-        <a href="#" onclick="filtrar('B')">Accesorios</a>
-      </div>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <h1 class="logo">🎸 AutoMusic</h1>
+      <p class="subtitulo-alumnos">Alumnos: Federico Robledo – Facundo Busta</p>
     </div>
 
-    <input type="text" id="search" placeholder="Buscar productos..." oninput="buscarProductos()">
+    <nav class="navbar">
+      <a href="/admin" class="login-btn">Login</a>
+    </nav>
+  </header>
 
-  </div>
+  <!-- CONTENIDO CENTRAL -->
+  <main class="bienvenida-main">
 
-  <div class="header-right">
-    <button id="btn-carrito" class="icon-btn">🛒<span id="carrito-count">0</span></button>
-    <a href="/admin" id="btn-login" class="login-btn">Login</a>
-  </div>
-</header>
+    <section class="bienvenida-card">
 
-<!-- CARRITO SIDEBAR (ÚNICO Y CORRECTO) -->
-<aside id="carrito-sidebar" class="carrito-sidebar">
-  <div class="carrito-header">
-    <h2>🛒 Carrito</h2>
-    <button id="cerrar-carrito" class="cerrar-btn">✖</button>
-  </div>
+      <div class="bienvenida-header">
+        <div class="bienvenida-icono">🎸</div>
+        <h2>Bienvenido a AutoMusic</h2>
+        <p class="bienvenida-texto">Conseguí los mejores instrumentos musicales y accesorios.</p>
+      </div>
 
-  <ul id="lista-carrito"></ul>
+      <form id="form-bienvenida" class="bienvenida-form">
+        <label for="nombre-cliente" class="bienvenida-label">Ingresá tu nombre para comenzar</label>
 
-  <p id="total">Total: $0</p>
-  <button id="btn-ticket" class="btn-ticket">Generar Ticket</button>
-  <button id="btn-vaciar" class="btn-vaciar">Vaciar carrito</button>
-</aside>
+        <input
+          id="nombre-cliente"
+          type="text"
+          class="bienvenida-input"
+          placeholder="Ej: Juan Pérez"
+          autocomplete="name"
+          required
+        />
 
-<!-- OVERLAY (ÚNICO) -->
-<div id="overlay" class="overlay"></div>
+        <button type="submit" class="bienvenida-boton">Comenzar</button>
+      </form>
 
-<!-- PRODUCTOS -->
-<main>
-  <div id="productos" class="contenedor-productos"></div>
-</main>
+      <p id="mensaje-saludo" class="bienvenida-saludo"></p>
 
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 AutoMusic - Proyecto UTN Avellaneda</p>
-</footer>
+      <p class="bienvenida-ayuda">Tu nombre se usará solo para mostrarlo en el ticket de compra.</p>
 
-<script src="./js/main.js"></script>
-<div id="notificacion" class="notif-hidden"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 AutoMusic - Proyecto UTN Avellaneda</p>
+  </footer>
+
+  <script src="./js/bienvenida.js"></script>
 </body>
 </html>

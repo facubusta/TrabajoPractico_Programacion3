@@ -1,0 +1,134 @@
+/* ======== PANTALLA DE BIENVENIDA ======== */
+
+/* Fondo general oscuro con leve degradado */
+.bienvenida-body {
+  background: linear-gradient(135deg, #111, #1c1c1c, #161616);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenedor central */
+.bienvenida-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Card */
+.bienvenida-card {
+  background: rgba(0,0,0,0.68);
+  border: 1px solid #333;
+  border-radius: 18px;
+  padding: 35px 40px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+}
+
+/* Icono */
+.bienvenida-icono {
+  font-size: 45px;
+  margin-bottom: 10px;
+  animation: flotando 3s ease-in-out infinite;
+}
+
+@keyframes flotando {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Títulos */
+.bienvenida-card h2 {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 26px;
+}
+
+.bienvenida-texto {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 25px;
+}
+
+/* Formulario */
+.bienvenida-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bienvenida-label {
+  text-align: left;
+  font-size: 14px;
+  color: #ddd;
+}
+
+.bienvenida-input {
+  padding: 12px 15px;
+  border-radius: 10px;
+  background: #262626;
+  border: 1px solid #444;
+  color: white;
+  font-size: 15px;
+}
+
+.bienvenida-input:focus {
+  outline: none;
+  border-color: #e63946;
+}
+
+/* Botón principal */
+.bienvenida-boton {
+  background: #e63946;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.bienvenida-boton:hover {
+  background: #ff4a58;
+  transform: translateY(-2px);
+}
+
+/* Mensajes */
+.bienvenida-saludo {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #3ac47d;
+}
+
+.bienvenida-ayuda {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #bbb;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px 0;
+  color: #999;
+  font-size: 13px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .bienvenida-card {
+    padding: 25px 25px;
+  }
+
+  .bienvenida-card h2 {
+    font-size: 22px;
+  }
+}
