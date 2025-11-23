@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Admin — Ventas</title>
+    <link rel="stylesheet" href="/css/admin.css" />
+    <style>
+      .muted{ color:#a0a0a0; }
+      table{ width:100%; border-collapse:collapse; background:#171717; border:1px solid #222; }
+      th, td{ padding:10px; border-bottom:1px solid #222; text-align:left; color:#ddd; }
+      th{ color:#eaeaea; }
+      .empty{ padding:16px; background:#151515; border:1px solid #222; border-radius:12px; color:#ddd; }
+    </style>
+  </head>
+  <body>
+    <header class="admin-header">
+      <h1>Ventas</h1>
+    </header>
+
+    <nav class="admin-nav">
+      <a href="/admin">Inicio</a>
+      <a href="/admin/productos">Productos</a>
+      <a href="/admin/ventas">Ventas</a>
+      <a href="/logout">Salir</a>
+    </nav>
+
+    <main class="admin-main">
+      <section class="tile">
+        <% if (error) { %>
+          <div class="empty"><%= error %></div>
+        <% } else if (!ventas.length) { %>
+          <div class="empty">
+            <p>No hay ventas registradas todavía.</p>
+          </div>
+        <% } else { %>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Cant. ítems</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% ventas.forEach(v => { %>
+                <tr>
+                  <td><%= v.id %></td>
+                  <td><%= v.cliente %></td>
+                  <td>
+                    <%= new Date(v.createdAt).toLocaleString("es-AR") %>
+                  </td>
+                  <td>$<%= Number(v.total).toFixed(2) %></td>
+                  <td>
+                    <%= (v.items || []).reduce((acc, it) => acc + (it.cantidad || 0), 0) %>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } %>
+      </section>
+    </main>
+  </body>
+</html>

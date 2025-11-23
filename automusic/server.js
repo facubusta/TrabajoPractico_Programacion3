@@ -2,12 +2,16 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import productsApi from "./routes/api.products.js";
+import apiSalesRouter from "./routes/api.sales.js";
 import cors from "cors";
 import session from "express-session";
 import { sequelize } from "./models/index.js";
 //  import authApi from "./routes/api.auth.js";
 import adminRouter from "./routes/admin.js";
 import adminProductsApi from "./routes/api.products.admin.js";
+import apiAdminSalesRouter from "./routes/api.sales.admin.js";
+
+
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -49,12 +53,18 @@ app.use(authRouter);
 
 // API de productos para usuario admin
 app.use("/api/admin/products", adminProductsApi); 
+
 // API de productos para usuario final
 app.use("/api/products", productsApi);
 
 // Rutas del panel de administración
 app.use("/admin", adminRouter);
 
+// API de ventas
+app.use("/api/ventas", apiSalesRouter);
+
+// API de ventas para admin
+app.use("/api/admin/ventas", apiAdminSalesRouter);
 
 // archivos estáticos del frontend
 app.use(express.static(path.join(__dirname, "./public")));

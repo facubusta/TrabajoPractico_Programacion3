@@ -179,18 +179,67 @@ function cerrarModalConfirmacion() {
   overlayModal.classList.remove("show");
 }
 
-function confirmarCompra() {
-  cerrarModalConfirmacion();
+async function confirmarCompra() {
+  console.log(">>> confirmarCompra() llamada");
+  // 1) Datos del cliente y del carrito
+  const nombreCliente = localStorage.getItem("clienteNombre") || "Cliente sin nombre";
 
-  // Cerrar carrito lateral si estaba abierto
-  const sidebar = document.getElementById("carrito-sidebar");
-  const overlayCarrito = document.getElementById("overlay");
-  if (sidebar && overlayCarrito) {
-    sidebar.classList.remove("open");
-    overlayCarrito.classList.remove("show");
+  if (!carrito.length) {
+    alert("El carrito está vacío.");
+    cerrarModalConfirmacion();
+    return;
   }
 
-  window.location.href = "ticket.html";
+  // Armamos items y total
+  const items = carrito.map(p => ({
+    id: p.id,
+    cantidad: p.cantidad,
+    price: p.price
+  }));
+
+  const total = items.reduce((acc, item) => acc + item.price * item.cantidad, 0);
+
+  // 2) Intentamos registrar la venta en el backend
+  try {
+    const resp = await fetch("http://localhost:3000/api/ventas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        cliente: nombreCliente,
+        total,
+        items
+      })
+    });
+
+    if (!resp.ok) {
+      throw new Error(`Error al registrar la venta (${resp.status})`);
+    }
+
+    const data = await resp.json();
+
+    // Guardo id de la venta para mostrar en el ticket
+    if (data && (data.id || data._id)) {
+      localStorage.setItem("ultimaVentaId", data.id || data._id);
+    }
+
+    // Se cierra modal y carrito
+    cerrarModalConfirmacion();
+
+    const sidebar = document.getElementById("carrito-sidebar");
+    const overlayCarrito = document.getElementById("overlay");
+    if (sidebar && overlayCarrito) {
+      sidebar.classList.remove("open");
+      overlayCarrito.classList.remove("show");
+    }
+
+    window.location.href = "ticket.html";
+
+  } catch (err) {
+    console.error(err);
+    alert("No se pudo registrar la venta. Intentá nuevamente en unos segundos.");
+  }
 }
 
 // ---------- Inicialización ----------

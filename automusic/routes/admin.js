@@ -221,4 +221,30 @@ router.post("/productos/:id/eliminar", requireAdminPage, async (req, res) => {
   }
 });
 
+// GET /admin/ventas -> lista ventas usando la API ADMIN
+router.get("/ventas", requireAdminPage, async (req, res) => {
+  try {
+    const baseURL = `http://localhost:${process.env.PORT || 3000}`;
+    const page = Number(req.query.page) || 1;
+
+    const resp = await fetch(`${baseURL}/api/admin/ventas?page=${page}`, {
+      headers: { cookie: req.headers.cookie || "" }
+    });
+
+    if (!resp.ok) throw new Error(`API admin ventas ${resp.status}`);
+
+    const data = await resp.json();
+    const ventas = Array.isArray(data) ? data : (data.data || []);
+
+    return res.render("admin/ventas", { ventas, error: null });
+  } catch (err) {
+    console.error("Error admin ventas:", err);
+    return res.render("admin/ventas", {
+      ventas: [],
+      error: "No se pudieron cargar las ventas"
+    });
+  }
+});
+
+
 export default router;
