@@ -497,3 +497,88 @@ footer {
 .saludo-cliente {
   text-shadow: 0 0 5px rgba(255,255,255,0.15);
 }
+
+/* ===== Modal de confirmación de compra (productos) ===== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  z-index: 900;
+}
+
+.modal-overlay.show {
+  display: block;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #1f1f1f;
+  border-radius: 14px;
+  padding: 24px 28px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+  text-align: center;
+  border: 1px solid #333;
+}
+
+.modal-content h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.modal-content p {
+  color: #ddd;
+  font-size: 14px;
+}
+
+.modal-buttons {
+  margin-top: 22px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.modal-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.modal-btn-confirm {
+  background: #e63946;
+  color: white;
+}
+
+.modal-btn-confirm:hover {
+  background: #ff4a58;
+  border-color: #ff4a58;
+}
+
+.modal-btn-cancel {
+  background: #2a2a2a;
+  color: white;
+}
+
+.modal-btn-cancel:hover {
+  background: #3a3a3a;
+  border-color: #666;
+}

@@ -28,7 +28,7 @@ function mostrarProductos(productos) {
   contenedor.innerHTML = "";
 
   productos.forEach(prod => {
-   console.log("IMG PATH:", prod.imagePath);
+    console.log("IMG PATH:", prod.imagePath);
     const card = document.createElement("div");
     card.classList.add("producto");
 
@@ -156,9 +156,42 @@ function generarTicket() {
     alert("El carrito está vacío.");
     return;
   }
-  window.location.href = "ticket.html";
+
+  abrirModalConfirmacion();
 }
 
+// ---------- Modal Confirmación ----------
+function abrirModalConfirmacion() {
+  const modal = document.getElementById("modal-confirmacion");
+  const overlayModal = document.getElementById("modal-overlay");
+  if (!modal || !overlayModal) return;
+
+  modal.classList.add("show");
+  overlayModal.classList.add("show");
+}
+
+function cerrarModalConfirmacion() {
+  const modal = document.getElementById("modal-confirmacion");
+  const overlayModal = document.getElementById("modal-overlay");
+  if (!modal || !overlayModal) return;
+
+  modal.classList.remove("show");
+  overlayModal.classList.remove("show");
+}
+
+function confirmarCompra() {
+  cerrarModalConfirmacion();
+
+  // Cerrar carrito lateral si estaba abierto
+  const sidebar = document.getElementById("carrito-sidebar");
+  const overlayCarrito = document.getElementById("overlay");
+  if (sidebar && overlayCarrito) {
+    sidebar.classList.remove("open");
+    overlayCarrito.classList.remove("show");
+  }
+
+  window.location.href = "ticket.html";
+}
 
 // ---------- Inicialización ----------
 document.addEventListener("DOMContentLoaded", () => {
@@ -167,15 +200,12 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCarrito();
   cargarProductos();
 
+  // Botones dentro del carrito
   const btnTicket = document.getElementById("btn-ticket");
-  if (btnTicket) {
-    btnTicket.addEventListener("click", generarTicket);
-  }
+  if (btnTicket) btnTicket.addEventListener("click", generarTicket);
 
   const btnVaciar = document.getElementById("btn-vaciar");
-  if (btnVaciar) {
-    btnVaciar.addEventListener("click", vaciarCarrito);
-  }
+  if (btnVaciar) btnVaciar.addEventListener("click", vaciarCarrito);
 
   // Abrir carrito
   document.getElementById("btn-carrito")
@@ -191,12 +221,28 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("overlay").classList.remove("show");
     });
 
-  // Cerrar clic afuera
+  // Cerrar clic afuera del carrito
   document.getElementById("overlay")
     .addEventListener("click", () => {
       document.getElementById("carrito-sidebar").classList.remove("open");
       document.getElementById("overlay").classList.remove("show");
     });
+
+  // Botones del modal
+  const btnModalConfirmar = document.getElementById("modal-confirmar");
+  if (btnModalConfirmar) {
+    btnModalConfirmar.addEventListener("click", confirmarCompra);
+  }
+
+  const btnModalCancelar = document.getElementById("modal-cancelar");
+  if (btnModalCancelar) {
+    btnModalCancelar.addEventListener("click", cerrarModalConfirmacion);
+  }
+
+  const overlayModal = document.getElementById("modal-overlay");
+  if (overlayModal) {
+    overlayModal.addEventListener("click", cerrarModalConfirmacion);
+  }
 });
 
 // ---------- Buscador ----------
